@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour {
     void Start () {
         ccwFlippers = GameObject.FindGameObjectsWithTag("Fipper_CCW");
         cwFlippers = GameObject.FindGameObjectsWithTag("Fipper_CW");
-        print(ccwFlippers.Length);
+        Debug.Log("game has started with " + (ccwFlippers.Length + cwFlippers.Length) + " flippers");
     }
 
     // Update is called once per frame
