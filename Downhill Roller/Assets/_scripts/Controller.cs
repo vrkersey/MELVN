@@ -7,6 +7,7 @@ public class Controller : MonoBehaviour {
     private BoxCollider thisFlipper;
     private float maxX;
     private int cw;
+    private bool action = false;
 
     public float maxOffset = 45f;
 
@@ -23,15 +24,23 @@ public class Controller : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        int counter;
 
         if (Input.anyKey)
         {
-            if (thisFlipper.transform.rotation.x >= maxX)
-            {
-
-            }
+            action = true;
         }
 
+        if (action)
+        {
+            //move toward max
+
+            //at max action = false
+        }
+        else
+        {
+            //mobe back to min
+        }
         
     }
 }
