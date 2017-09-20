@@ -1,31 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
 
-    private BoxCollider thisFlipper;
+    private Controller thisFlipper;
     private float maxX;
-    private int cw;
+    private float minX;
+    private int dir;
     private bool action = false;
+    private float angle = 0f;
 
     public float maxOffset = 45f;
+    public float speed = 100f;
 
     // Use this for initialization
     void Start () {
-        thisFlipper = GetComponent<BoxCollider>();
-        cw = thisFlipper.CompareTag("Flipper_CW") ? 1 : -1;
-        maxX = thisFlipper.transform.localEulerAngles.x + maxOffset * cw;
+        thisFlipper = this;
+        dir = thisFlipper.CompareTag("Flipper_CW") ? 1 : -1;
+        maxX = thisFlipper.transform.localEulerAngles.x + maxOffset * -dir;
+        maxX = maxX >= 360 ? maxX - 360 : maxX;
+        minX = thisFlipper.transform.localEulerAngles.x;
 
-        Debug.Log("Game has Started");
-        Debug.Log(thisFlipper.transform.rotation.eulerAngles.x);
-        
+        Debug.Log("Game has Started");        
     }
 
     // Update is called once per frame
     void Update () {
-        int counter;
 
+        //Debug.Log(angle);
         if (Input.anyKey)
         {
             action = true;
@@ -33,13 +37,26 @@ public class Controller : MonoBehaviour {
 
         if (action)
         {
-            //move toward max
-
-            //at max action = false
+            
+            if (angle <= maxOffset)
+            {
+                float delta = speed * Time.deltaTime * dir;
+                transform.Rotate(Vector3.up, delta);
+                angle += Math.Abs(delta);
+            }
+            else
+            {
+                action = false;
+            }
         }
         else
         {
-            //mobe back to min
+            if (angle > 0)
+            {
+                float delta = speed * Time.deltaTime * -dir;
+                transform.Rotate(Vector3.up, delta);
+                angle -= Math.Abs(delta);
+            }
         }
         
     }
