@@ -3,18 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
-    GameObject[] ccwFlippers;
-    GameObject[] cwFlippers;
+
+    private BoxCollider thisFlipper;
+    private float maxX;
+    private int cw;
+
+    public float maxOffset = 45f;
 
     // Use this for initialization
     void Start () {
-        ccwFlippers = GameObject.FindGameObjectsWithTag("Fipper_CCW");
-        cwFlippers = GameObject.FindGameObjectsWithTag("Fipper_CW");
-        Debug.Log("game has started with " + (ccwFlippers.Length + cwFlippers.Length) + " flippers");
+        thisFlipper = GetComponent<BoxCollider>();
+        cw = thisFlipper.CompareTag("Flipper_CW") ? 1 : -1;
+        maxX = thisFlipper.transform.localEulerAngles.x + maxOffset * cw;
+
+        Debug.Log("Game has Started");
+        Debug.Log(thisFlipper.transform.rotation.eulerAngles.x);
+        
     }
 
     // Update is called once per frame
     void Update () {
-		
-	}
+
+        if (Input.anyKey)
+        {
+            if (thisFlipper.transform.rotation.x >= maxX)
+            {
+
+            }
+        }
+
+        
+    }
 }
