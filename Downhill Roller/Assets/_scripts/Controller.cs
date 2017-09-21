@@ -6,22 +6,17 @@ using UnityEngine;
 public class Controller : MonoBehaviour {
 
     private Controller thisFlipper;
-    private float maxX;
-    private float minX;
     private int dir;
     private bool action = false;
     private float angle = 0f;
 
     public float maxOffset = 45f;
-    public float speed = 100f;
+    public float speed = 200f;
 
     // Use this for initialization
     void Start () {
         thisFlipper = this;
         dir = thisFlipper.CompareTag("Flipper_CW") ? 1 : -1;
-        maxX = thisFlipper.transform.localEulerAngles.x + maxOffset * -dir;
-        maxX = maxX >= 360 ? maxX - 360 : maxX;
-        minX = thisFlipper.transform.localEulerAngles.x;
 
         Debug.Log("Game has Started");        
     }
