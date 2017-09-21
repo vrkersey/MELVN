@@ -22,7 +22,7 @@ public class Controller : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
 
         //Debug.Log(angle);
         if (Input.anyKey)
