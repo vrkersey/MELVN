@@ -9,15 +9,18 @@ public class flipperController : MonoBehaviour {
     private int dir;
     private bool action = false;
     private float angle = 0f;
+    private Vector3 normal;
 
     public float maxOffset = 45f;
     public float speed = 200f;
-
+    public bool inversedFlipper = false;
+    public float bounceForce = 75f;
+   
     // Use this for initialization
     void Start () {
         thisFlipper = this;
         dir = thisFlipper.CompareTag("Flipper_CW") ? 1 : -1;
-
+        
         Debug.Log("Game has Started");        
     }
 
@@ -29,6 +32,10 @@ public class flipperController : MonoBehaviour {
         {
             action = true;
         }
+        else
+        {
+            action = false;
+        }
 
         if (action)
         {
@@ -39,10 +46,7 @@ public class flipperController : MonoBehaviour {
                 transform.Rotate(Vector3.up, delta);
                 angle += Math.Abs(delta);
             }
-            else
-            {
-                action = false;
-            }
+       
         }
         else
         {
@@ -53,6 +57,20 @@ public class flipperController : MonoBehaviour {
                 angle -= Math.Abs(delta);
             }
         }
-        
+    }
+    
+    public void OnCollisionStay(Collision c)
+    {
+        GameObject otherObject = c.gameObject;
+
+        if (otherObject.CompareTag("Player") && (inversedFlipper ? !action : action))
+        {
+            foreach (ContactPoint p in c.contacts)
+            {
+                Vector3 force = otherObject.transform.position - p.point;
+                Rigidbody _rb = otherObject.GetComponent<Rigidbody>();
+                _rb.AddForce(force * bounceForce);
+            }
+        }
     }
 }

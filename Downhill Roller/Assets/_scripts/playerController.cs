@@ -24,6 +24,12 @@ public class playerController : MonoBehaviour {
     {
         if (c.CompareTag("Death_Zone"))
         {
+            print("Death");
+            SceneManager.LoadScene(currentScene);
+        }
+        if (c.CompareTag("Win_Zone"))
+        {
+            print("Winner");
             SceneManager.LoadScene(currentScene);
         }
     }
