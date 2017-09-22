@@ -20,8 +20,6 @@ public class flipperController : MonoBehaviour {
     void Start () {
         thisFlipper = this;
         dir = thisFlipper.CompareTag("Flipper_CW") ? 1 : -1;
-        
-        Debug.Log("Game has Started");        
     }
 
     // Update is called once per frame
