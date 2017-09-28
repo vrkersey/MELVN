@@ -84,7 +84,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_scripts\buttonController.cs" />
     <Compile Include="Assets\_scripts\flipperController.cs" />
+    <Compile Include="Assets\_scripts\FollowPlayer.cs" />
     <Compile Include="Assets\_scripts\playerController.cs" />
   </ItemGroup>
   <ItemGroup>
