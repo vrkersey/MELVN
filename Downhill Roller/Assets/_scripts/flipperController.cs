@@ -10,6 +10,7 @@ public class flipperController : MonoBehaviour {
     private bool action = false;
     private float angle = 0f;
     private Vector3 normal;
+    private bool col_flag = false;
 
     public float maxOffset = 45f;
     public float speed = 200f;
@@ -38,7 +39,7 @@ public class flipperController : MonoBehaviour {
         if (action)
         {
             
-            if (angle <= maxOffset)
+            if (angle <= maxOffset && !col_flag)
             {
                 float delta = speed * Time.deltaTime * dir;
                 transform.Rotate(Vector3.up, delta);
@@ -70,5 +71,11 @@ public class flipperController : MonoBehaviour {
                 _rb.AddForce(force * bounceForce);
             }
         }
+        //col_flag = true;
+    }
+
+    public void OnCollisionExit(Collision c)
+    {
+        col_flag = false;
     }
 }
