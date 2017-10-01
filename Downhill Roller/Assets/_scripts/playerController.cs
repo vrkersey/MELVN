@@ -5,19 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour {
 
-    private playerController ball;
+    private GameObject ball;
+    private Rigidbody ballRB;
     private string currentScene;
 
 	// Use this for initialization
 	void Start () {
-        ball = this;
+        ball = this.gameObject;
+        ballRB = ball.GetComponent<Rigidbody>();
         currentScene = SceneManager.GetActiveScene().name;
 
+        ballRB.useGravity = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Input.anyKey)
+        {
+            ballRB.useGravity = true;
+        }
 	}
 
     public void OnTriggerEnter(Collider c)

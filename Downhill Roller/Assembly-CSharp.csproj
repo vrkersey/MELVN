@@ -46,10 +46,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\_scripts\FollowPlayer.cs" />
+     <Compile Include="Assets\_scripts\bumperController.cs" />
      <Compile Include="Assets\_scripts\buttonController.cs" />
+     <Compile Include="Assets\_scripts\customCamera.cs" />
      <Compile Include="Assets\_scripts\flipperController.cs" />
      <Compile Include="Assets\_scripts\playerController.cs" />
+     <Compile Include="Assets\_scripts\tunnelController.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
  <Reference Include="UnityEngine.UI">
