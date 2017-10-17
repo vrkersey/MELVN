@@ -28,7 +28,6 @@ public class bumperController : MonoBehaviour {
             {
                 
                 Vector3 force = otherObject.transform.position - p.point;
-                Debug.Log(force);
                 Rigidbody _rb = otherObject.GetComponent<Rigidbody>();
                 _rb.AddForce(force * bounceForce);
             }
