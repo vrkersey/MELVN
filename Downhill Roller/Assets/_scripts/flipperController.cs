@@ -27,7 +27,7 @@ public class flipperController : MonoBehaviour {
     void FixedUpdate () {
 
         //Debug.Log(angle);
-        if (Input.anyKey)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)))
         {
             action = true;
         }

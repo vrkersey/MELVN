@@ -24,7 +24,7 @@ public class fanController : MonoBehaviour {
 	void Update () {
         //anim.Play();
         force = inactiveForce;
-        if (Input.anyKey && !alwaysActive)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && !alwaysActive)
         {
             force = activeForce;
         }

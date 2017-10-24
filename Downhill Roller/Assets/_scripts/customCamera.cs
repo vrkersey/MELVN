@@ -25,7 +25,7 @@ public class customCamera : MonoBehaviour {
         Vector3 zoom = Player.position + offset;
         Vector3 newPos = Vector3.SmoothDamp(transform.position, zoom, ref m_CurrentVelocity, 2.5f);
         transform.position = newPos;
-        if (Input.anyKey && locked)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && locked)
         {
             locked = false;
             transform.position = Player.position + offset;

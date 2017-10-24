@@ -51,6 +51,7 @@
      <Compile Include="Assets\_scripts\customCamera.cs" />
      <Compile Include="Assets\_scripts\fanController.cs" />
      <Compile Include="Assets\_scripts\flipperController.cs" />
+     <Compile Include="Assets\_scripts\menuDropdown.cs" />
      <Compile Include="Assets\_scripts\playerController.cs" />
      <Compile Include="Assets\_scripts\tunnelController.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
