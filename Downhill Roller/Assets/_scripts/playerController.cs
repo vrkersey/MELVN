@@ -14,6 +14,7 @@ public class playerController : MonoBehaviour {
     private bool bounce = true;
     private bool doPowerUp = false;
     private float timer;
+    private Vector3 normal = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,6 @@ public class playerController : MonoBehaviour {
 
         powerUps = GameObject.Find("buttonManager").GetComponent<buttonController>().getPowerUps();
         timer = Time.realtimeSinceStartup - 5;
-
     }
 	
 	// Update is called once per frame
@@ -36,7 +36,7 @@ public class playerController : MonoBehaviour {
             ballRB.useGravity = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && (boost || hover || bounce))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && (boost || hover || (bounce && normal != Vector3.zero)))
         {
             //Debug.Log("activating power up");
             if (!doPowerUp)
@@ -46,7 +46,7 @@ public class playerController : MonoBehaviour {
 
             doPowerUp = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1) && (boost || hover || bounce))
+        if (Input.GetKeyUp(KeyCode.Mouse1) && (boost || hover || (bounce && normal != Vector3.zero)))
         {
             //Debug.Log("let off mouse");
             timer = 0;
@@ -68,12 +68,11 @@ public class playerController : MonoBehaviour {
             }
             else if (bounce)
             {
-                //Vector3 v = Quaternion.Euler(0,0,90) * ballRB.velocity.normalized;
-                //v.y = v.y > 0 ? v.y : -v.y;
-                //Debug.Log(v);
-                //ballRB.AddForce(v * 5000);
+                ballRB.AddForce(normal * 5000);
                 //timer = 0;
                 bounce = false;
+                powerUps[2].SetActive(false);
+                powerUps[0].SetActive(false);
             }
         }
         else if (doPowerUp && timer + 5 < Time.realtimeSinceStartup)
@@ -83,11 +82,15 @@ public class playerController : MonoBehaviour {
             if (boost)
             {
                 boost = false;
+                powerUps[1].SetActive(false);
+                powerUps[0].SetActive(false);
             }
             if (hover)
             {
                 hover = false;
                 ballRB.useGravity = true;
+                powerUps[3].SetActive(false);
+                powerUps[0].SetActive(false);
             }
         }
     }
@@ -128,5 +131,16 @@ public class playerController : MonoBehaviour {
             powerUps[3].SetActive(true);
             hover = true;
         }
+    }
+
+    public void OnCollisionEnter(Collision c)
+    {
+        normal = c.transform.position - c.contacts[0].point;
+        normal.Normalize();
+    }
+
+    public void OnCollisionExit(Collision c)
+    {
+        normal = Vector3.zero;
     }
 }
