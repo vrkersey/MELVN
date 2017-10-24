@@ -104,7 +104,105 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 522
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint3
+        weight: 1
+      - path: joint1/joint4
+        weight: 1
+      - path: joint1/joint5
+        weight: 1
+      - path: joint1/joint6
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform6
+        weight: 1
+      - path: pCube3
+        weight: 1
+      - path: pCube3/transform1
+        weight: 1
+      - path: pCube4
+        weight: 1
+      - path: pCube4/transform5
+        weight: 1
+      - path: pCube5
+        weight: 1
+      - path: pCube5/transform4
+        weight: 1
+      - path: pCube6
+        weight: 1
+      - path: pCube6/transform2
+        weight: 1
+      - path: pCube7
+        weight: 1
+      - path: pCube7/polySurface1
+        weight: 1
+      - path: pCube7/polySurface1/transform8
+        weight: 1
+      - path: pCube7/polySurface2
+        weight: 1
+      - path: pCube7/polySurface2/transform9
+        weight: 1
+      - path: pCube7/polySurface3
+        weight: 1
+      - path: pCube7/polySurface3/transform10
+        weight: 1
+      - path: pCube7/polySurface4 1
+        weight: 1
+      - path: pCube7/polySurface4 1/transform13
+        weight: 1
+      - path: pCube7/polySurface5
+        weight: 1
+      - path: pCube7/polySurface5/transform11
+        weight: 1
+      - path: pCube7/polySurface6
+        weight: 1
+      - path: pCube7/polySurface6/transform12
+        weight: 1
+      - path: pCube7/transform7
+        weight: 1
+      - path: pCylinder1
+        weight: 1
+      - path: pCylinder1/transform3
+        weight: 1
+      - path: polySurface4
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
