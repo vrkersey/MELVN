@@ -11,7 +11,7 @@ public class playerController : MonoBehaviour {
     private GameObject[] powerUps;
     private bool boost;
     private bool hover;
-    private bool bounce = true;
+    private bool bounce;
     private bool doPowerUp = false;
     private float timer;
     private Vector3 normal = Vector3.zero;
