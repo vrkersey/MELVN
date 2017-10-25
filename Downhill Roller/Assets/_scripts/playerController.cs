@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour {
     private Rigidbody ballRB;
     private string currentScene;
     private GameObject[] powerUps;
-    private bool boost = true;
+    private bool boost;
     private bool hover;
     private bool bounce;
     private bool doPowerUp = false;
@@ -135,7 +135,7 @@ public class playerController : MonoBehaviour {
 
     public void OnCollisionEnter(Collision c)
     {
-        normal = c.transform.position - c.contacts[0].point;
+        normal = ball.transform.position - c.contacts[0].point;
         normal.Normalize();
     }
 
