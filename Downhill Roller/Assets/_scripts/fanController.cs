@@ -39,7 +39,6 @@ public class fanController : MonoBehaviour {
         {
             Vector3 forceVector = (other.transform.position - thisPosition);
             float distance = forceVector.magnitude;
-            print(distance);
             forceVector.Normalize();
             other_rb.AddForce(forceVector * force/distance);
         }

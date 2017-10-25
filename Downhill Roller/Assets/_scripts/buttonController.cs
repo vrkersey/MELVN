@@ -74,6 +74,9 @@ public class buttonController : MonoBehaviour {
             case 2:
                 level = "ED";
                 break;
+            case 3:
+                level = "ED";
+                break;
         }
 
         SceneManager.LoadScene(level);
