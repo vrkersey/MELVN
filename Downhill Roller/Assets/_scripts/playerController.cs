@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour {
     private Rigidbody ballRB;
     private string currentScene;
     private GameObject[] powerUps;
-    private bool boost;
+    private bool boost = true;
     private bool hover;
     private bool bounce;
     private bool doPowerUp = false;
