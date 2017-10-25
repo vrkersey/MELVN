@@ -82,6 +82,24 @@ public class buttonController : MonoBehaviour {
         SceneManager.LoadScene(level);
     }
 
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+    }
+
+    public void Quit()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
+    }
+
     public GameObject[] getPowerUps()
     {
         return powerUps;

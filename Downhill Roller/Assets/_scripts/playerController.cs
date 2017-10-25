@@ -24,7 +24,7 @@ public class playerController : MonoBehaviour {
 
         ballRB.useGravity = false;
 
-        powerUps = GameObject.Find("buttonManager").GetComponent<buttonController>().getPowerUps();
+        powerUps = GameObject.Find("EventSystem").GetComponent<buttonController>().getPowerUps();
         timer = Time.realtimeSinceStartup - 5;
     }
 	
