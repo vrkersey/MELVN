@@ -5,12 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class menuDropdown : MonoBehaviour {
 
-    public string Level1;
-    public string Level2;
-    public string Level3;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public string level1;
+    public string level2;
+    public string level3;
+    public string level4;
+    
 }

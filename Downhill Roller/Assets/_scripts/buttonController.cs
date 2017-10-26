@@ -63,19 +63,20 @@ public class buttonController : MonoBehaviour {
         string level = "Menu";
         int itemSelected = levelDropdown.value;
         print(itemSelected);
+        menuDropdown script = GameObject.Find("Level Select").GetComponent<menuDropdown>();
         switch (itemSelected)
         {
             case 0:
-                level = "Ball Glow NEW";
+                level = script.level1;
                 break;
             case 1:
-                level = "Victors level";
+                level = script.level2; 
                 break;
             case 2:
-                level = "ED";
+                level = script.level3; 
                 break;
             case 3:
-                level = "ED";
+                level = script.level4;
                 break;
         }
 
