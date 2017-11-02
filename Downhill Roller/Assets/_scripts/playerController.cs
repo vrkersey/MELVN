@@ -16,6 +16,8 @@ public class playerController : MonoBehaviour {
     private float timer;
     private Vector3 normal = Vector3.zero;
 
+    public float flipperForce = 12;
+
 	// Use this for initialization
 	void Start () {
         ball = this.gameObject;

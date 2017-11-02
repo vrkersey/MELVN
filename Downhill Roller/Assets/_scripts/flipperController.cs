@@ -15,7 +15,7 @@ public class flipperController : MonoBehaviour {
     public float maxOffset = 45f;
     public float speed = 200f;
     public bool inversedFlipper = false;
-    public float bounceForce = 75f;
+    public float bounceForce = 12f;
    
     // Use this for initialization
     void Start () {
@@ -64,11 +64,17 @@ public class flipperController : MonoBehaviour {
 
         if (otherObject.CompareTag("Player") && (inversedFlipper ? !action : action))
         {
+            if (bounceForce == -1)
+            {
+                bounceForce = otherObject.GetComponent<playerController>().flipperForce;
+            }
             foreach (ContactPoint p in c.contacts)
             {
-                Vector3 force = otherObject.transform.position - p.point;
+                Vector3 vector = otherObject.transform.position - p.point;
+                vector.Normalize();
                 Rigidbody _rb = otherObject.GetComponent<Rigidbody>();
-                _rb.AddForce(force * bounceForce);
+                _rb.velocity = _rb.velocity + vector * bounceForce/5;
+                //_rb.AddForce(force * bounceForce);
             }
         }
         //col_flag = true;
