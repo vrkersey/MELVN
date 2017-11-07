@@ -233,8 +233,11 @@
     <Compile Include="Assets\_scripts\menuDropdown.cs" />
     <Compile Include="Assets\_scripts\playerController.cs" />
     <Compile Include="Assets\_scripts\tunnelController.cs" />
+    <Compile Include="Assets\GalaxyBox2\Scripts\examplescene.cs" />
+    <Compile Include="Assets\GalaxyBox2\Scripts\MouseLook.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\GalaxyBox2\instructions.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
