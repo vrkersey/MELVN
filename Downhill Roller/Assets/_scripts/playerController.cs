@@ -123,7 +123,9 @@ public class playerController : MonoBehaviour {
                 case "Nick's Level":
                     SceneManager.LoadScene("Nick's Level");
                     break;
-
+                default:
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    break;
             }
         }
         if (c.CompareTag("pu_Boost"))
