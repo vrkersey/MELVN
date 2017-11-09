@@ -16,8 +16,9 @@ public class playerController : MonoBehaviour {
     private float timer;
     private Vector3 normal = Vector3.zero;
 
-    public float flipperForce = 12;
-
+    public float flipperForce = 12f;
+    public float jumpForce = 5f;
+    public float speedForce = 1f;
 	// Use this for initialization
 	void Start () {
         ball = this.gameObject;
@@ -61,7 +62,7 @@ public class playerController : MonoBehaviour {
                 //Debug.Log("Doing boost");
                 Vector3 v = ballRB.velocity;
                 v.Normalize();
-                ballRB.AddForce(v * 100);
+                ballRB.AddForce(v * speedForce * 100);
             }
             else if (hover)
             {
@@ -70,7 +71,7 @@ public class playerController : MonoBehaviour {
             }
             else if (bounce)
             {
-                ballRB.AddForce(normal * 5000);
+                ballRB.AddForce(normal * jumpForce * 1000);
                 //timer = 0;
                 bounce = false;
                 powerUps[2].SetActive(false);
