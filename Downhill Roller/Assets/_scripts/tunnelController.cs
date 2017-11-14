@@ -19,14 +19,14 @@ public class tunnelController : MonoBehaviour {
 
     public void OnCollisionStay(Collision c)
     {
-        GameObject otherObject = c.gameObject;
+        //GameObject otherObject = c.gameObject;
 
-        if (otherObject.CompareTag("Player"))
-        {
-            Rigidbody _rb = otherObject.GetComponent<Rigidbody>();
-            Vector3 dir = _rb.velocity;
-            _rb.AddForce(dir * boostForce);
+        //if (otherObject.CompareTag("Player"))
+        //{
+        //    Rigidbody _rb = otherObject.GetComponent<Rigidbody>();
+        //    Vector3 dir = _rb.velocity;
+        //    _rb.AddForce(dir * boostForce);
 
-        }
+        //}
     }
 }

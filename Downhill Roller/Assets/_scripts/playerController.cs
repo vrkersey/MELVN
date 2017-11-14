@@ -102,12 +102,10 @@ public class playerController : MonoBehaviour {
     {
         if (c.CompareTag("Death_Zone"))
         {
-            Debug.Log("Death");
             SceneManager.LoadScene(currentScene);
         }
         if (c.CompareTag("Win_Zone"))
         {
-            Debug.Log("Winner");
             switch (SceneManager.GetActiveScene().name)
             {
 
@@ -130,7 +128,6 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("pu_Boost"))
         {
-            Debug.Log("Boost obtained");
             c.gameObject.SetActive(false);
             powerUps[0].SetActive(true);
             powerUps[1].SetActive(true);
@@ -138,7 +135,6 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("pu_Bounce"))
         {
-            Debug.Log("Bounce obtained");
             c.gameObject.SetActive(false);
             powerUps[0].SetActive(true);
             powerUps[2].SetActive(true);
@@ -146,11 +142,19 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("pu_Hover"))
         {
-            Debug.Log("Hover obtained");
             c.gameObject.SetActive(false);
             powerUps[0].SetActive(true);
             powerUps[3].SetActive(true);
             hover = true;
+        }
+    }
+
+    public void OnTriggerStay(Collider c)
+    {
+        if (c.CompareTag("Booster_Pipe"))
+        {
+            float boost = c.GetComponent<tunnelController>().boostForce/10;
+            ballRB.velocity += (ballRB.velocity.normalized * boost); 
         }
     }
 
