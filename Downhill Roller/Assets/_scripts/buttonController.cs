@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class buttonController : MonoBehaviour {
-    private GameObject pauseMenu;
+    private GameObject playButton;
     private GameObject[] powerUps = new GameObject[4];
 
     // Use this for initialization
@@ -17,8 +17,8 @@ public class buttonController : MonoBehaviour {
             GameObject bounce;
             GameObject hover;
 
-            pauseMenu = GameObject.Find("Pause");
-            pauseMenu.SetActive(false);
+            playButton = GameObject.Find("Play");
+            playButton.SetActive(false);
 
             boost = GameObject.Find("Boost");
             boost.SetActive(false);
@@ -40,14 +40,14 @@ public class buttonController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Menu")
         {
             //open menu
-            if (pauseMenu.activeSelf)
+            if (!playButton.activeSelf)
             {
-                pauseMenu.SetActive(false);
+                playButton.SetActive(false);
                 Time.timeScale = 1;
             }
             else
             {
-                pauseMenu.SetActive(true);
+                playButton.SetActive(true);
                 Time.timeScale = 0;
             }
         }
@@ -85,8 +85,13 @@ public class buttonController : MonoBehaviour {
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        playButton.SetActive(false);
         Time.timeScale = 1;
+    }
+    public void Pause()
+    {
+        playButton.SetActive(true);
+        Time.timeScale = 0;
     }
     public void Restart()
     {
