@@ -7,6 +7,7 @@ public class fanController : MonoBehaviour {
     private Vector3 thisPosition;
     private float force;
     private Animator anim;
+    private ParticleSystem[] wind;
 
     public float inactiveForce = 25f;
     public float activeForce;
@@ -17,16 +18,34 @@ public class fanController : MonoBehaviour {
         self = this.gameObject;
         thisPosition = self.transform.position;
         anim = GetComponent<Animator>();
-        
+        anim.speed = inactiveForce;
+        wind = self.GetComponentsInChildren<ParticleSystem>();
+        Debug.Log(wind.Length);
+        foreach (ParticleSystem w in wind)
+        {
+            w.enableEmission = false;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //anim.Play();
         force = inactiveForce;
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && !alwaysActive)
         {
             force = activeForce;
+            anim.speed = anim.speed <= activeForce ? anim.speed + .5f: activeForce;
+            foreach (ParticleSystem w in wind)
+            {
+                w.enableEmission = true;
+            }
+        }
+        else
+        {
+            anim.speed = anim.speed >= inactiveForce ? anim.speed - .5f : inactiveForce;
+            foreach (ParticleSystem w in wind)
+            {
+                w.enableEmission = false;
+            }
         }
         force *= 100;
     }
