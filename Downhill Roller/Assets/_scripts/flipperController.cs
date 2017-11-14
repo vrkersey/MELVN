@@ -10,23 +10,24 @@ public class flipperController : MonoBehaviour {
     private bool action = false;
     private float angle = 0f;
     private Vector3 normal;
-    private bool col_flag = false;
+    private Vector3 objectHit;
+    private GameObject ball;
 
     public float maxOffset = 45f;
     public float speed = 200f;
     public bool inversedFlipper = false;
     public float bounceForce = 12f;
-   
+    
     // Use this for initialization
     void Start () {
         thisFlipper = this;
         dir = thisFlipper.CompareTag("Flipper_CW") ? 1 : -1;
+        ball = GameObject.FindGameObjectsWithTag("Player")[0];
     }
 
     // Update is called once per frame
     void FixedUpdate () {
 
-        //Debug.Log(angle);
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)))
         {
             action = true;
@@ -36,10 +37,14 @@ public class flipperController : MonoBehaviour {
             action = false;
         }
 
+        
         if (action)
         {
-            
-            if (angle <= maxOffset && !col_flag)
+            if (objectHit == ball.transform.position)
+            {
+                //Do nothing
+            }
+            else if (angle <= maxOffset)
             {
                 float delta = speed * Time.deltaTime * dir;
                 transform.Rotate(Vector3.up, delta);
@@ -64,6 +69,7 @@ public class flipperController : MonoBehaviour {
 
         if (otherObject.CompareTag("Player") && (inversedFlipper ? !action : action))
         {
+            objectHit = c.transform.position;
             if (bounceForce == -1)
             {
                 bounceForce = otherObject.GetComponent<playerController>().flipperForce;
@@ -78,10 +84,5 @@ public class flipperController : MonoBehaviour {
             }
         }
         //col_flag = true;
-    }
-
-    public void OnCollisionExit(Collision c)
-    {
-        col_flag = false;
     }
 }
