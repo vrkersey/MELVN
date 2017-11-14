@@ -85,12 +85,12 @@ public class buttonController : MonoBehaviour {
 
     public void Resume()
     {
-        playButton.SetActive(false);
+        playButton.SetActive(true);
         Time.timeScale = 1;
     }
     public void Pause()
     {
-        playButton.SetActive(true);
+        playButton.SetActive(false);
         Time.timeScale = 0;
     }
     public void Restart()
