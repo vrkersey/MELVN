@@ -237,6 +237,7 @@
     <Compile Include="Assets\GalaxyBox2\Scripts\MouseLook.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Fonts\insane-hours-2\pizzadudedotdk.txt" />
     <None Include="Assets\GalaxyBox2\instructions.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
