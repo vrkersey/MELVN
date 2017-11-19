@@ -24,8 +24,8 @@ public class customCamera : MonoBehaviour {
 	void Update ()
     {
         float mag = Player.GetComponent<Rigidbody>().velocity.magnitude;
-
-        transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
+        if (!locked)
+            transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
         offset.z = distanceFromBall - mag;
         Vector3 zoom = Player.position + offset;
         Vector3 newPos = Vector3.SmoothDamp(transform.position, zoom, ref m_CurrentVelocity, zoomSpeed);
