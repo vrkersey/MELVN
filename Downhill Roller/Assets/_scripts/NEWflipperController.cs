@@ -6,7 +6,7 @@ public class NEWflipperController : MonoBehaviour {
 
     private float flipperDamper = 15f;
     private HingeJoint hinge;
-    private float springForce = 100f;
+    private float springForce = 10000f;
 
     public float offset = 45f;
     
@@ -42,7 +42,6 @@ public class NEWflipperController : MonoBehaviour {
 
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)))
         {
-            Debug.Log("button");
             spring.targetPosition = offset;
         }
         else
