@@ -7,9 +7,15 @@ using UnityEngine.UI;
 public class buttonController : MonoBehaviour {
     private GameObject playButton;
     private GameObject[] powerUps = new GameObject[4];
+    private Dropdown levelSelect;
+    static private int levelsAdded;
+
+    static public int LevelsAdded { get { return levelsAdded; } set { levelsAdded = value; } }
+
 
     // Use this for initialization
     void Start () {
+        
         if (SceneManager.GetActiveScene().name != "Menu")
         {
             GameObject powerUp;
@@ -33,6 +39,15 @@ public class buttonController : MonoBehaviour {
             powerUps[2] = bounce;
             powerUps[3] = hover;
         }
+        else
+        {
+            levelSelect = GameObject.Find("Level Select").GetComponent<Dropdown>();
+            for (int c = 0; c <= levelsAdded; c++)
+            {
+                levelSelect.AddOptions(new List<string> { "Level " + (c + 1) });
+            }
+        }
+        Debug.Log(levelsAdded);
 	}
 	
 	// Update is called once per frame
@@ -60,27 +75,7 @@ public class buttonController : MonoBehaviour {
 
     public void Start_Level(Dropdown levelDropdown)
     {
-        string level = "Menu";
-        int itemSelected = levelDropdown.value;
-        print(itemSelected);
-        menuDropdown script = GameObject.Find("Level Select").GetComponent<menuDropdown>();
-        switch (itemSelected)
-        {
-            case 0:
-                level = script.level1;
-                break;
-            case 1:
-                level = script.level2; 
-                break;
-            case 2:
-                level = script.level3; 
-                break;
-            case 3:
-                level = script.level4;
-                break;
-        }
-
-        SceneManager.LoadScene(level);
+        SceneManager.LoadScene(levelDropdown.value + 1);
     }
 
     public void Resume()

@@ -6,13 +6,14 @@ public class customCamera : MonoBehaviour {
     private bool locked = true;
     private Vector3 offset;
     private Vector3 m_CurrentVelocity;
+    private Transform Player;
 
-    public Transform Player;
 	public float zoomSpeed;
     public float distanceFromBall = 10f;
 
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
         offset = new Vector3(0, 0, distanceFromBall);
         distanceFromBall = -distanceFromBall;
         if (zoomSpeed == 0)

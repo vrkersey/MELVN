@@ -9,5 +9,9 @@ public class menuDropdown : MonoBehaviour {
     public string level2;
     public string level3;
     public string level4;
-    
+
+    public string[] levels = { "Ball Glow NEW",
+                               "Victors level",
+                               "Logans level",
+                               "Nick's Level",};
 }

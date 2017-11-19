@@ -106,25 +106,10 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("Win_Zone"))
         {
-            switch (SceneManager.GetActiveScene().name)
-            {
+            Debug.Log(buttonController.LevelsAdded);
+            buttonController.LevelsAdded++;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 
-                case "Ball Glow NEW":
-                    SceneManager.LoadScene("Victors level");
-                    break;
-                case "Victors level":
-                    SceneManager.LoadScene("Logans level");
-                    break;
-                case "Logans level":
-                    SceneManager.LoadScene("Nick's Level");
-                    break;
-                case "Nick's Level":
-                    SceneManager.LoadScene("Nick's Level");
-                    break;
-                default:
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                    break;
-            }
         }
         if (c.CompareTag("pu_Boost"))
         {
