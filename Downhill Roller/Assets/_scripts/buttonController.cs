@@ -47,7 +47,6 @@ public class buttonController : MonoBehaviour {
                 levelSelect.AddOptions(new List<string> { "Level " + (c + 1) });
             }
         }
-        Debug.Log(levelsAdded);
 	}
 	
 	// Update is called once per frame
