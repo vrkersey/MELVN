@@ -16,9 +16,12 @@ public class playerController : MonoBehaviour {
     private float timer;
     private Vector3 normal = Vector3.zero;
 
+    static public bool notFirst;
     public float flipperForce = 12f;
     public float jumpForce = 5f;
     public float speedForce = 1f;
+    
+
 	// Use this for initialization
 	void Start () {
         ball = this.gameObject;
@@ -29,10 +32,25 @@ public class playerController : MonoBehaviour {
 
         powerUps = GameObject.Find("EventSystem").GetComponent<buttonController>().getPowerUps();
         timer = Time.realtimeSinceStartup - 5;
+
+        GameObject levelAudio = GameObject.Find("Audio Source");
+        if (levelAudio != null)
+        {
+            if (!notFirst)
+            {
+                levelAudio.name = "KeptAudio";
+                DontDestroyOnLoad(levelAudio);
+                notFirst = true;
+            }
+            else
+            {
+                levelAudio.GetComponent<AudioSource>().Stop();
+            }
+        }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)))
         {
@@ -106,7 +124,12 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("Win_Zone"))
         {
-
+            GameObject levelAudio = GameObject.Find("KeptAudio");
+            if (levelAudio != null)
+            {
+                Destroy(levelAudio);
+                notFirst = false;
+            }
             if (SceneManager.GetActiveScene().buildIndex == 10)
             {
                 SceneManager.LoadScene(0);
