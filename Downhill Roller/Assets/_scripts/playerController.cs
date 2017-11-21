@@ -106,10 +106,16 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("Win_Zone"))
         {
-            Debug.Log(buttonController.LevelsAdded);
-            buttonController.LevelsAdded++;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 
+            if (SceneManager.GetActiveScene().buildIndex == 10)
+            {
+                SceneManager.LoadScene(0);
+            }
+            else
+            {
+                buttonController.LevelsAdded++;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
         if (c.CompareTag("pu_Boost"))
         {

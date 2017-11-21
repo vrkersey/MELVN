@@ -100,6 +100,19 @@ public class buttonController : MonoBehaviour {
         SceneManager.LoadScene("Menu");
     }
 
+    public void UnlockLevels()
+    {
+        buttonController.LevelsAdded = 10;
+        SceneManager.LoadScene(0);
+       
+    }
+    public void LockLevels()
+    {
+        buttonController.LevelsAdded = 0;
+        SceneManager.LoadScene(0);
+
+    }
+
     public GameObject[] getPowerUps()
     {
         return powerUps;
