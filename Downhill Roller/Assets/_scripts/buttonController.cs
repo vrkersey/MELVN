@@ -96,6 +96,12 @@ public class buttonController : MonoBehaviour {
 
     public void Quit()
     {
+        GameObject levelAudio = GameObject.Find("KeptAudio");
+        if (levelAudio != null)
+        {
+            Destroy(levelAudio);
+        }
+        playerController.notFirst = false;
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }

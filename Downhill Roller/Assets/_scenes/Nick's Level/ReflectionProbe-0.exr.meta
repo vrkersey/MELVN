@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 93d20666cdda19d42bbc111c8134fd21
+guid: e5b8d99a16088b640b46b5eb2a267dd3
 timeCreated: 1510688078
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     8900000: generatedCubemap
-  externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -14,8 +13,6 @@ TextureImporter:
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
-    mipMapsPreserveCoverage: 0
-    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -31,13 +28,10 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    serializedVersion: 2
     filterMode: 2
     aniso: 0
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapMode: -1
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -59,7 +53,6 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 100
@@ -70,7 +63,6 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
