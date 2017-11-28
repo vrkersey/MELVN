@@ -15,13 +15,18 @@ public class playerController : MonoBehaviour {
     private bool doPowerUp = false;
     private float timer;
     private Vector3 normal = Vector3.zero;
+    private float powerupTime = 5f;
+    private Transform timerBar;
 
     static public bool notFirst;
     public float flipperForce = 12f;
     public float jumpForce = 5f;
     public float speedForce = 1f;
     
-
+    void Awake()
+    {
+        timerBar = GameObject.Find("Remaining Time").GetComponent<Transform>();
+    }
 	// Use this for initialization
 	void Start () {
         ball = this.gameObject;
@@ -32,7 +37,7 @@ public class playerController : MonoBehaviour {
 
         powerUps = GameObject.Find("EventSystem").GetComponent<buttonController>().getPowerUps();
         timer = Time.realtimeSinceStartup - 5;
-
+        
         GameObject levelAudio = GameObject.Find("Audio Source");
         if (levelAudio != null)
         {
@@ -85,7 +90,7 @@ public class playerController : MonoBehaviour {
             else if (hover)
             {
                 //Debug.Log("Hovering");
-                ballRB.useGravity = false;
+                ballRB.useGravity = false;  
             }
             else if (bounce)
             {
@@ -94,9 +99,14 @@ public class playerController : MonoBehaviour {
                 bounce = false;
                 powerUps[2].SetActive(false);
                 powerUps[0].SetActive(false);
+                timer = 0;
+
             }
+            float scale = (powerupTime - (Time.realtimeSinceStartup - timer)) / powerupTime;
+            timerBar.localScale = new Vector3(scale, 1, 1);
+            //Debug.Log();
         }
-        else if (doPowerUp && timer + 5 < Time.realtimeSinceStartup)
+        else if (doPowerUp && timer + powerupTime < Time.realtimeSinceStartup)
         {
             //Debug.Log("power up finished");
             doPowerUp = false;
@@ -146,6 +156,7 @@ public class playerController : MonoBehaviour {
             powerUps[0].SetActive(true);
             powerUps[1].SetActive(true);
             boost = true;
+            GameObject.Find("Remaining Time").transform.localScale = new Vector3(1, 1, 1);
         }
         if (c.CompareTag("pu_Bounce"))
         {
@@ -153,6 +164,7 @@ public class playerController : MonoBehaviour {
             powerUps[0].SetActive(true);
             powerUps[2].SetActive(true);
             bounce = true;
+            GameObject.Find("Remaining Time").transform.localScale = new Vector3(1, 1, 1);
         }
         if (c.CompareTag("pu_Hover"))
         {
@@ -160,6 +172,7 @@ public class playerController : MonoBehaviour {
             powerUps[0].SetActive(true);
             powerUps[3].SetActive(true);
             hover = true;
+            GameObject.Find("Remaining Time").transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
