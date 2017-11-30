@@ -169,6 +169,7 @@ public class playerController : MonoBehaviour {
         if (c.CompareTag("pu_Hover"))
         {
             c.gameObject.SetActive(false);
+            StartCoroutine(respawn(c.gameObject));
             powerUps[0].SetActive(true);
             powerUps[3].SetActive(true);
             hover = true;
@@ -194,5 +195,12 @@ public class playerController : MonoBehaviour {
     public void OnCollisionExit(Collision c)
     {
         normal = Vector3.zero;
+    }
+
+    IEnumerator respawn(GameObject obj)
+    {
+        yield return new WaitForSeconds(5f);
+
+        obj.SetActive(true);
     }
 }
