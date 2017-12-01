@@ -8,10 +8,8 @@ public class buttonController : MonoBehaviour {
     private GameObject playButton;
     private GameObject[] powerUps = new GameObject[4];
     private Dropdown levelSelect;
-    static private int levelsAdded;
 
-    static public int LevelsAdded { get { return levelsAdded; } set { levelsAdded = value; } }
-
+    static public bool[] levelsAdded = { true, true, false, false, false, false, false, false, false, false, false };
 
     // Use this for initialization
     void Start () {
@@ -42,9 +40,12 @@ public class buttonController : MonoBehaviour {
         else
         {
             levelSelect = GameObject.Find("Level Select").GetComponent<Dropdown>();
-            for (int c = 0; c <= levelsAdded; c++)
+            for (int c = 1; c < 11; c++)
             {
-                levelSelect.AddOptions(new List<string> { "Level " + (c + 1) });
+                if (levelsAdded[c])
+                {
+                    levelSelect.AddOptions(new List<string> { "Level " + c });
+                }
             }
         }
 	}
@@ -101,20 +102,19 @@ public class buttonController : MonoBehaviour {
         {
             Destroy(levelAudio);
         }
-        playerController.notFirst = false;
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
 
     public void UnlockLevels()
     {
-        buttonController.LevelsAdded = 10;
+        //buttonController.LevelsAdded = 10;
         SceneManager.LoadScene(0);
        
     }
     public void LockLevels()
     {
-        buttonController.LevelsAdded = 0;
+        //buttonController.LevelsAdded = 0;
         SceneManager.LoadScene(0);
 
     }

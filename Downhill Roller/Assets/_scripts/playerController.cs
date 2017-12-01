@@ -18,7 +18,6 @@ public class playerController : MonoBehaviour {
     private float powerupTime = 5f;
     private Transform timerBar;
 
-    static public bool notFirst;
     public float flipperForce = 12f;
     public float jumpForce = 5f;
     public float speedForce = 1f;
@@ -26,14 +25,15 @@ public class playerController : MonoBehaviour {
     void Awake()
     {
         timerBar = GameObject.Find("Remaining Time").GetComponent<Transform>();
-    }
-	// Use this for initialization
-	void Start () {
+
         ball = this.gameObject;
         ballRB = ball.GetComponent<Rigidbody>();
-        currentScene = SceneManager.GetActiveScene().name;
-
         ballRB.useGravity = false;
+    }
+
+	// Use this for initialization
+	void Start () {
+        currentScene = SceneManager.GetActiveScene().name;
 
         powerUps = GameObject.Find("EventSystem").GetComponent<buttonController>().getPowerUps();
         timer = Time.realtimeSinceStartup - 5;
@@ -41,11 +41,10 @@ public class playerController : MonoBehaviour {
         GameObject levelAudio = GameObject.Find("Audio Source");
         if (levelAudio != null)
         {
-            if (!notFirst)
+            if (GameObject.Find("KeptAudio") == null)
             {
                 levelAudio.name = "KeptAudio";
                 DontDestroyOnLoad(levelAudio);
-                notFirst = true;
             }
             else
             {
@@ -95,7 +94,6 @@ public class playerController : MonoBehaviour {
             else if (bounce)
             {
                 ballRB.AddForce(normal * jumpForce * 1000);
-                //timer = 0;
                 bounce = false;
                 powerUps[2].SetActive(false);
                 powerUps[0].SetActive(false);
@@ -138,15 +136,14 @@ public class playerController : MonoBehaviour {
             if (levelAudio != null)
             {
                 Destroy(levelAudio);
-                notFirst = false;
             }
-            if (SceneManager.GetActiveScene().buildIndex == 10)
+            if (SceneManager.GetActiveScene().buildIndex >= 10)
             {
                 SceneManager.LoadScene(0);
             }
             else
             {
-                buttonController.LevelsAdded++;
+                buttonController.levelsAdded[SceneManager.GetActiveScene().buildIndex+1] = true;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
