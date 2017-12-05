@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\GalaxyBox2\Scripts\MouseLook.cs" />
      <Compile Include="Assets\GalaxyBox2\Scripts\examplescene.cs" />
+     <Compile Include="Assets\LaserScript2.cs" />
      <Compile Include="Assets\_scripts\NEWflipperController.cs" />
      <Compile Include="Assets\_scripts\bumperController.cs" />
      <Compile Include="Assets\_scripts\buttonController.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\_scripts\menuDropdown.cs" />
      <Compile Include="Assets\_scripts\playerController.cs" />
      <Compile Include="Assets\_scripts\tunnelController.cs" />
+     <Compile Include="Assets\laserScript.cs" />
      <None Include="Assets\GalaxyBox2\instructions.txt" />
      <None Include="Assets\Fonts\insane-hours-2\pizzadudedotdk.txt" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
