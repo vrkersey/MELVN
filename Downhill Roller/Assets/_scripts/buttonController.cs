@@ -9,11 +9,12 @@ public class buttonController : MonoBehaviour {
     private GameObject[] powerUps = new GameObject[4];
     private Dropdown levelSelect;
 
+    public CanvasGroup fader;
     static public bool[] levelsAdded = { true, true, false, false, false, false, false, false, false, false, false };
 
     // Use this for initialization
     void Start () {
-        
+        StartCoroutine(fadeIn());
         if (SceneManager.GetActiveScene().name != "Menu")
         {
             GameObject powerUp;
@@ -80,12 +81,12 @@ public class buttonController : MonoBehaviour {
 
     public void Resume()
     {
-        playButton.SetActive(true);
+        playButton.SetActive(false);
         Time.timeScale = 1;
     }
     public void Pause()
     {
-        playButton.SetActive(false);
+        playButton.SetActive(true);
         Time.timeScale = 0;
     }
     public void Restart()
@@ -122,5 +123,33 @@ public class buttonController : MonoBehaviour {
     public GameObject[] getPowerUps()
     {
         return powerUps;
+    }
+
+    public IEnumerator fadeIn()
+    {
+        float timer = 0f;
+
+        while (timer < 1f)
+        {
+            timer += Time.deltaTime;
+
+            fader.alpha = Mathf.Lerp(1f, 0f, timer);
+
+            yield return null;
+        }
+    }
+    public IEnumerator fadeOut(int toLevel)
+    {
+        float timer = 0f;
+
+        while (timer < 1f)
+        {
+            timer += Time.deltaTime;
+
+            fader.alpha = Mathf.Lerp(0f, 1f, timer);
+
+            yield return null;
+        }
+        SceneManager.LoadScene(toLevel);
     }
 }

@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour {
     private Vector3 normal = Vector3.zero;
     private float powerupTime = 5f;
     private Transform timerBar;
+    private buttonController bc;
 
     public float flipperForce = 12f;
     public float jumpForce = 5f;
@@ -25,17 +26,17 @@ public class playerController : MonoBehaviour {
     void Awake()
     {
         timerBar = GameObject.Find("Remaining Time").GetComponent<Transform>();
-
+        bc = GameObject.Find("EventSystem").GetComponent<buttonController>();
         ball = this.gameObject;
         ballRB = ball.GetComponent<Rigidbody>();
-        ballRB.useGravity = false;
+        ballRB.isKinematic = true;
     }
 
 	// Use this for initialization
 	void Start () {
         currentScene = SceneManager.GetActiveScene().name;
 
-        powerUps = GameObject.Find("EventSystem").GetComponent<buttonController>().getPowerUps();
+        powerUps = bc.getPowerUps();
         timer = Time.realtimeSinceStartup - 5;
         
         GameObject levelAudio = GameObject.Find("Audio Source");
@@ -58,7 +59,7 @@ public class playerController : MonoBehaviour {
 
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)))
         {
-            ballRB.useGravity = true;
+            ballRB.isKinematic = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && (boost || hover || (bounce && normal != Vector3.zero)))
@@ -133,18 +134,19 @@ public class playerController : MonoBehaviour {
         if (c.CompareTag("Win_Zone"))
         {
             GameObject levelAudio = GameObject.Find("KeptAudio");
+            ballRB.isKinematic = true;
             if (levelAudio != null)
             {
                 Destroy(levelAudio);
             }
             if (SceneManager.GetActiveScene().buildIndex >= 10)
             {
-                SceneManager.LoadScene(0);
+                StartCoroutine(bc.fadeOut(0));
             }
             else
             {
                 buttonController.levelsAdded[SceneManager.GetActiveScene().buildIndex+1] = true;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                StartCoroutine(bc.fadeOut(SceneManager.GetActiveScene().buildIndex + 1));
             }
         }
         if (c.CompareTag("pu_Boost"))
