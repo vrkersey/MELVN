@@ -14,9 +14,10 @@ public class buttonController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartCoroutine(fadeIn());
         if (SceneManager.GetActiveScene().name != "Menu")
         {
+            StartCoroutine(fadeIn());
+
             GameObject powerUp;
             GameObject boost;
             GameObject bounce;
@@ -109,13 +110,15 @@ public class buttonController : MonoBehaviour {
 
     public void UnlockLevels()
     {
-        //buttonController.LevelsAdded = 10;
+        for (int c = 0; c < levelsAdded.Length; c++)
+            buttonController.levelsAdded[c] = true;
         SceneManager.LoadScene(0);
        
     }
     public void LockLevels()
     {
-        //buttonController.LevelsAdded = 0;
+        for (int c = 2; c < levelsAdded.Length; c++)
+            buttonController.levelsAdded[c] = false;
         SceneManager.LoadScene(0);
 
     }

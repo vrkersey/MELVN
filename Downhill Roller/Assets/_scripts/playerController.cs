@@ -133,6 +133,7 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("Win_Zone"))
         {
+            Debug.Log("level" + SceneManager.GetActiveScene().buildIndex);
             GameObject levelAudio = GameObject.Find("KeptAudio");
             ballRB.isKinematic = true;
             if (levelAudio != null)
