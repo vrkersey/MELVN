@@ -18,6 +18,7 @@ public class playerController : MonoBehaviour {
     private float powerupTime = 5f;
     private Transform timerBar;
     private buttonController bc;
+    private bool first;
 
     public float flipperForce = 12f;
     public float jumpForce = 5f;
@@ -35,7 +36,7 @@ public class playerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         currentScene = SceneManager.GetActiveScene().name;
-
+        first = true;
         powerUps = bc.getPowerUps();
         timer = Time.realtimeSinceStartup - 5;
         
@@ -57,9 +58,10 @@ public class playerController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)))
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && first)
         {
             ballRB.isKinematic = false;
+            first = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && (boost || hover || (bounce && normal != Vector3.zero)))
@@ -135,7 +137,14 @@ public class playerController : MonoBehaviour {
         {
             Debug.Log("level" + SceneManager.GetActiveScene().buildIndex);
             GameObject levelAudio = GameObject.Find("KeptAudio");
+            ParticleSystem ps = GameObject.Find("Victory Fireworks").GetComponent<ParticleSystem>();
+            ball.transform.rotation = new Quaternion(0, 0, 0, 0);
+            if (ps)
+            {
+                ps.Play();
+            }
             ballRB.isKinematic = true;
+
             if (levelAudio != null)
             {
                 Destroy(levelAudio);
@@ -179,6 +188,7 @@ public class playerController : MonoBehaviour {
 
     public void OnTriggerStay(Collider c)
     {
+        
         if (c.CompareTag("Booster_Pipe"))
         {
             float boost = c.GetComponent<tunnelController>().boostForce/10;
