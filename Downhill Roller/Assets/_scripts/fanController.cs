@@ -20,7 +20,6 @@ public class fanController : MonoBehaviour {
         anim = GetComponent<Animator>();
         anim.speed = inactiveForce;
         wind = self.GetComponentsInChildren<ParticleSystem>();
-        Debug.Log(wind.Length);
         foreach (ParticleSystem w in wind)
         {
             w.enableEmission = false;

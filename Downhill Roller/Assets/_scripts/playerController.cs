@@ -135,7 +135,6 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("Win_Zone"))
         {
-            Debug.Log("level" + SceneManager.GetActiveScene().buildIndex);
             GameObject levelAudio = GameObject.Find("KeptAudio");
             ParticleSystem ps = GameObject.Find("Victory Fireworks").GetComponent<ParticleSystem>();
             ball.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -159,7 +158,7 @@ public class playerController : MonoBehaviour {
                 StartCoroutine(bc.fadeOut(SceneManager.GetActiveScene().buildIndex + 1));
             }
         }
-        if (c.CompareTag("pu_Boost"))
+        if (c.CompareTag("pu_Boost") && !(boost||bounce||hover))
         {
             c.gameObject.SetActive(false);
             powerUps[0].SetActive(true);
@@ -167,7 +166,7 @@ public class playerController : MonoBehaviour {
             boost = true;
             GameObject.Find("Remaining Time").transform.localScale = new Vector3(1, 1, 1);
         }
-        if (c.CompareTag("pu_Bounce"))
+        if (c.CompareTag("pu_Bounce") && !(boost || bounce || hover))
         {
             c.gameObject.SetActive(false);
             powerUps[0].SetActive(true);
@@ -175,7 +174,7 @@ public class playerController : MonoBehaviour {
             bounce = true;
             GameObject.Find("Remaining Time").transform.localScale = new Vector3(1, 1, 1);
         }
-        if (c.CompareTag("pu_Hover"))
+        if (c.CompareTag("pu_Hover") && !(boost || bounce || hover))
         {
             c.gameObject.SetActive(false);
             StartCoroutine(respawn(c.gameObject));
