@@ -135,7 +135,7 @@ public class playerController : MonoBehaviour {
         }
         if (c.CompareTag("Win_Zone"))
         {
-            GameObject levelAudio = GameObject.Find("KeptAudio");
+            
             ParticleSystem ps = GameObject.Find("Victory Fireworks").GetComponent<ParticleSystem>();
             ball.transform.rotation = new Quaternion(0, 0, 0, 0);
             if (ps)
@@ -144,10 +144,7 @@ public class playerController : MonoBehaviour {
             }
             ballRB.isKinematic = true;
 
-            if (levelAudio != null)
-            {
-                Destroy(levelAudio);
-            }
+            
             if (SceneManager.GetActiveScene().buildIndex >= 10)
             {
                 StartCoroutine(bc.fadeOut(0));

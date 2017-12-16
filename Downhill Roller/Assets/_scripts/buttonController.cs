@@ -144,6 +144,7 @@ public class buttonController : MonoBehaviour {
     public IEnumerator fadeOut(int toLevel)
     {
         float timer = 0f;
+        GameObject levelAudio = GameObject.Find("KeptAudio");
 
         while (timer < 1f)
         {
@@ -152,6 +153,10 @@ public class buttonController : MonoBehaviour {
             fader.alpha = Mathf.Lerp(0f, 1f, timer);
 
             yield return null;
+        }
+        if (levelAudio != null)
+        {
+            Destroy(levelAudio);
         }
         SceneManager.LoadScene(toLevel);
     }
